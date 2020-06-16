@@ -9,6 +9,8 @@ __contributors__ = ["Martin 'Joey' Schulze", "Ricardo Reyes", "Kevin Jay North"]
 
 # TODO:
 #   Support decoded entities with unifiable.
+from idna import unichr
+from urllib3.connectionpool import xrange
 
 try:
     True
@@ -176,7 +178,8 @@ def google_fixed_width_font(style):
 def list_numbering_start(attrs):
     """extract numbering from list element attributes"""
     if 'start' in attrs:
-        return int(attrs['start']) - 1
+
+        return int(attrs['start'][0]) - 1
     else:
         return 0
 
