@@ -23,20 +23,16 @@ def get_contents(email):
         return email.get_payload()
 
 if __name__ == "__main__":
-    print("before file)")
     # get mbox file
-    mbox_file = "/home/somaiaamin/rachel/Pipeline-01_Lead.mbox"
-    print("after file)")
+    mbox_file = "example.mbox" #change this to your file name
     # create CSV file
     writer = csv.writer(open(export_file_name, "wb"), encoding='utf-8')
-    print("csv)")
 
     # create header row
     writer.writerow(["subject", "from", "date", "body"])
 
     # add rows based on mbox file
     for email in mailbox.mbox(mbox_file):
-        print("(writing line)")
         contents = get_contents(email)
         contents = html2text.html2text(contents)
         writer.writerow([email["subject"], email["from"], email["date"], contents])
